@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  memo: MyString
+  page: 1
+  feedback: MyText
+  readed_page: 1
+  reading: false
+
+two:
+  title: MyString
+  memo: MyString
+  page: 1
+  feedback: MyText
+  readed_page: 1
+  reading: false

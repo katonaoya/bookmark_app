@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'mybooks#index'
+  resources :mybooks do
+    member do
+      get '/reading', to: 'mybooks#reading'
+      patch '/reading', to: 'mybooks#reading_edit'
+    end
+  end
 end
