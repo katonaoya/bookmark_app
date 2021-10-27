@@ -18,6 +18,7 @@ class MybooksController < ApplicationController
 
   def edit
     @mybook = Mybook.find(params[:id])
+    @record = Record.new(mybook_id: @mybook.id)
   end
 
   def destroy
@@ -38,6 +39,7 @@ class MybooksController < ApplicationController
 
   def show
     @mybook = Mybook.find(params[:id])
+    @records = Record.where(mybook_id: params[:id])
   end
 
   def reading
@@ -47,13 +49,11 @@ class MybooksController < ApplicationController
   def reading_edit
     @mybook = Mybook.find(params[:id])
     @mybook.update(finish_params)
-    redirect_to mybook_path, notice: "「#{@mybook.title}」を読了しました。"
-    
-    # if @mybook.update(finish_params)
-    #   redirect_to mybook_path, notice: "「#{@mybook.title}」を読了しました。"
-    # else
-    #   render :reading, notice: "登録失敗"
-    # end
+    if @mybook.feedback.present?
+      redirect_to mybook_path, notice: "「#{@mybook.title}」を読了しました。"
+    else
+      render :reading
+    end
   end
 
   private
@@ -63,7 +63,7 @@ class MybooksController < ApplicationController
   end
 
   def finish_params
-    params.require(:mybook).permit(:title, :page, :memo, :feedback)
+    params.require(:mybook).permit(:feedback)
   end
 
 end

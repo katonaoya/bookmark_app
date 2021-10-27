@@ -1,19 +1,16 @@
 h1 読書記録
 
-table.table.talbe-hover
+= render partial: 'book_info', locals: { record: @record }
+
+table.table.table-hover.row
+  thead.thead-default
+    tr
+      th.col-md-2= 'しおりを挟んだページ'
+      th.col-md-7= 'コメント'
+      th.col-md-2= '登録日時'
   tbody
-    tr
-      th= Mybook.human_attribute_name(:title)
-      td= @mybook.title
-    tr
-      th= Mybook.human_attribute_name(:page)
-      td= @mybook.page
-    tr
-      th= Mybook.human_attribute_name(:created_at)
-      td= @mybook.created_at.strftime("%Y年%m月%d日 %H:%M")
-    tr
-      th= Mybook.human_attribute_name(:reading)
-      td= @mybook.feedback? ? '読了' : '未読了'
-    tr
-      th= 'フィードバック'
-      td= @mybook.feedback
+    - @records.each do |record|
+      tr
+        td= record.readed_page
+        td= record.comment
+        td= record.created_at.strftime("%Y年%m月%d日 %H:%M")

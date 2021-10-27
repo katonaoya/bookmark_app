@@ -6,4 +6,7 @@ Rails.application.routes.draw do
       patch '/reading', to: 'mybooks#reading_edit'
     end
   end
+  resources :mybooks, shllow: true do
+    resources :records
+  end
 end

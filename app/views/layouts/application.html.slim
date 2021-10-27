@@ -8,7 +8,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navber.navber-expand-md.navbar-light.bg-light
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       = link_to 'BookmarkApp', root_path, class: 'navbar-brand'
     .container
       - if flash.notice.present?
