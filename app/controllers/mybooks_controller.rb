@@ -3,6 +3,28 @@ class MybooksController < ApplicationController
     @mybooks = Mybook.all
   end
 
+  def readed
+    mybooks = Mybook.all
+    @mybooks = []
+    mybooks.each do |mybook|
+      unless mybook.feedback.present?
+        @mybooks << mybook
+      end
+    end
+    render "mybooks/index"
+  end
+    
+  def unreaded
+    mybooks = Mybook.all
+    @mybooks = []
+    mybooks.each do |mybook|
+      if mybook.feedback.present?
+        @mybooks << mybook
+      end
+    end
+    render "mybooks/index"
+  end
+
   def new
     @mybook = Mybook.new
   end

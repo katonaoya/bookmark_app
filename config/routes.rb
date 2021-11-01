@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       get '/reading', to: 'mybooks#reading'
       patch '/reading', to: 'mybooks#reading_edit'
     end
+    collection do
+      get 'readed'
+      get 'unreaded'
+    end
   end
   resources :mybooks, shllow: true do
     resources :records
