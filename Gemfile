@@ -71,4 +71,5 @@ gem 'slim-rails'
 gem 'bootstrap'
 gem 'ransack'
 gem 'rb-readline'
+gem 'bcrypt'
 

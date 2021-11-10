@@ -1,10 +1,10 @@
 class MybooksController < ApplicationController
   def index
-    @mybooks = Mybook.all
+    @mybooks = current_user.mybooks
   end
 
   def readed
-    mybooks = Mybook.all
+    mybooks = current_user.mybooks
     @mybooks = []
     mybooks.each do |mybook|
       unless mybook.feedback.present?
@@ -15,7 +15,7 @@ class MybooksController < ApplicationController
   end
     
   def unreaded
-    mybooks = Mybook.all
+    mybooks = current_user.mybooks
     @mybooks = []
     mybooks.each do |mybook|
       if mybook.feedback.present?
@@ -30,7 +30,7 @@ class MybooksController < ApplicationController
   end
 
   def create
-    @mybook = Mybook.new(mybook_params)
+    @mybook = Mybook.new(mybook_params.merge(user_id: current_user.id))
     if @mybook.save
       redirect_to root_path, notice: "Mybookを登録しました。"
     else
