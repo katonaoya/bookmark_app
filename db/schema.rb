@@ -10,22 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_024_070_058) do
-  create_table 'mybooks', force: :cascade do |t|
-    t.string 'title', null: false
-    t.string 'memo'
-    t.integer 'page', null: false
-    t.text 'feedback'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema.define(version: 2021_11_09_224059) do
+
+  create_table "mybooks", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "memo"
+    t.integer "page", null: false
+    t.text "feedback"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_mybooks_on_user_id"
   end
 
-  create_table 'records', force: :cascade do |t|
-    t.integer 'readed_page', null: false
-    t.text 'comment'
-    t.integer 'mybook_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['mybook_id'], name: 'index_records_on_mybook_id'
+  create_table "records", force: :cascade do |t|
+    t.integer "readed_page", null: false
+    t.text "comment"
+    t.integer "mybook_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mybook_id"], name: "index_records_on_mybook_id"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end

@@ -4,4 +4,5 @@ class Mybook < ApplicationRecord
   validates :page, presence: true, format: { with: VALID_PAGE_REGEX }
 
   has_many :records
+  belongs_to :user
 end
