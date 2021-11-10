@@ -2,11 +2,11 @@ h1 読書記録
 
 = render partial: 'book_info', locals: { record: @record }
 
-table.table.table-hover.row
+table.table.table-hover
   thead.thead-default
     tr
       th.col-md-2= 'しおりを挟んだページ'
-      th.col-md-7= 'コメント'
+      th.col-md-6= 'コメント'
       th.col-md-2= '登録日時'
   tbody
     - @records.each do |record|
