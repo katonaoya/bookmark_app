@@ -1,0 +1,18 @@
+table.table.talbe-hover
+  tbody
+    tr
+      th= Mybook.human_attribute_name(:title)
+      td= @mybook.title
+    tr
+      th= Mybook.human_attribute_name(:page)
+      td= @mybook.page
+    tr
+      th= Mybook.human_attribute_name(:created_at)
+      td= @mybook.created_at.strftime("%Y年%m月%d日 %H:%M")
+    tr
+      th= Mybook.human_attribute_name(:reading)
+      td= @mybook.feedback? ? '読了' : '未読了'
+    tr
+      - if @mybook.feedback?
+        th= 'フィードバック'
+        td= @mybook.feedback

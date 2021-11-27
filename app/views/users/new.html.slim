@@ -1,0 +1,15 @@
+h1 ユーザー登録
+
+- if @user.errors.present?
+ ul#error_explanation
+    - mybook.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: @user, local: true do |f|
+  .form_group
+    = f.label :name, '名前（半角英字）'
+    = f.text_field :name, class: 'form-control', id: 'session_name'
+  .form_group
+    = f.label :password, 'パスワード'
+    = f.password_field :password, class: 'form-control', id: 'session_password'
+  = f.submit nil, class: 'btn btn-primary' 

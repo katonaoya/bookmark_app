@@ -1,0 +1,20 @@
+h1 読了後のアウトプット
+
+table.table.talbe-hover
+  tbody
+    tr
+      th= Mybook.human_attribute_name(:title)
+      td= @mybook.title
+    tr
+      th= Mybook.human_attribute_name(:page)
+      td= @mybook.page
+    tr
+      th= Mybook.human_attribute_name(:created_at)
+      td= @mybook.created_at.strftime("%Y年%m月%d日 %H:%M")
+
+= form_with model: @mybook, url: reading_mybook_path, local: true do |f|
+  .form-group
+    = f.label :feedback, 'アウトプット'
+    = f.text_area :feedback, rows: 20, class: 'form-control', id: 'mybook_feedback'
+  = f.submit nil, class: 'btn btn-primary'
+  

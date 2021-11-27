@@ -1,0 +1,31 @@
+h1 所持書籍一覧
+
+br
+= link_to ' 書籍一覧 ', root_path, class: 'btn btn-info col-md-4'
+= link_to '未読了一覧', readed_mybooks_path, class: 'btn btn-danger col-md-4'
+= link_to ' 読了一覧 ', unreaded_mybooks_path, class: 'btn btn-success col-md-4'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th.col-md-3= 'タイトル'
+      th.col-md-1= 'しおりのページ'
+      th.col-md-2= '総ページ数'
+      th.col-md-= '登録日時'
+      th.col-md-4=
+  tbody
+    - @mybooks.each do |mybook|
+      tr
+        td= link_to mybook.title, mybook_path(mybook)
+        td
+          - record = Record.where(mybook_id: mybook.id).last
+          - if record
+            = record.readed_page
+        td= mybook.page
+        td= mybook.created_at.strftime("%Y年%m月%d日 %H:%M")
+        td
+          - unless mybook.feedback?
+            = link_to 'しおり記録', new_mybook_record_path(mybook), class: 'btn btn-primary'
+            = link_to '　読了　', reading_mybook_path(mybook), class: 'btn btn-success'
+          = link_to '　削除　', mybook, method: :delete, data: { confirm: "タスク「#{mybook.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

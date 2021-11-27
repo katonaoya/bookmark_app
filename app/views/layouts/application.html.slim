@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title
+      | BookmarkApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      = link_to 'BookmarkApp', root_path, class: 'navbar-brand h1'
+
+      ul.navbar-nav.ml-auto
+        - if current_user
+          li.nav-item= link_to '本の登録', new_mybook_path, class: 'nav-link'
+          li.nav-item= link_to 'ログアウト', logout_path,method: :delete , class: 'nav-link'
+          li.navbar-text.active= "#{current_user.name}さんのページ"
+        - else
+          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+          li.nav-item= link_to 'ユーザー登録', new_user_path, class: 'nav-link'
+    .container
+      - if flash.notice.present?
+        .alert.alert-success= flash.notice
+      = yield
